@@ -1,15 +1,26 @@
 # RepTRFD
-Official implementation of "Reparameterized Tensor Ring Functional Decomposition for Multi-Dimensional Data Recovery", CVPR 2026.
 
-## 📂 Dataset
+Official implementation of **"Reparameterized Tensor Ring Functional Decomposition for Multi-Dimensional Data Recovery" (CVPR 2026)**.
 
-The datasets used in our experiments are publicly available. Please download the required data from our Google Drive and place them into the `data/` directory.
+---
 
-🔗 **[Download Dataset (Google Drive)](https://drive.google.com/drive/folders/1rphapDHEcFwBZXH-nHEKFGMynZabOKPT?usp=sharing)**
+## Dataset
 
-## 🗂️ Directory Structure
+The datasets used in our experiments are publicly available.
 
-After downloading the dataset, your project structure should look like this:
+- **Test datasets** can be downloaded from:  
+  https://drive.google.com/drive/folders/1rphapDHEcFwBZXH-nHEKFGMynZabOKPT?usp=sharing
+
+- The **SHOT dataset** used in our paper is available at:  
+  https://drive.google.com/drive/folders/1lboszDEitPdZaJivdm3LCr_22SGopqw6?usp=drive_link
+
+After downloading, please place the files into the `data/` directory.
+
+---
+
+## Directory Structure
+
+After organizing the datasets, your project structure should look like:
 
 ```text
 RepTRFD/
@@ -24,7 +35,21 @@ RepTRFD/
 ├── model.py                        # Core RepTRFD network architectures
 ├── utils.py                        # Utility functions
 │
-├── Demo_inpainting.py              # Script for Image/Video Inpainting
-├── Demo_denoising.py               # Script for MSI/HSI Denoising
-├── Demo_super_resolution.py        # Script for Image Super-Resolution
-└── Demo_point_cloud.py             # Script for Point Cloud Recovery
+├── Demo_inpainting.py              # Image / Video Inpainting
+├── Demo_denoising.py               # MSI / HSI Denoising
+├── Demo_super_resolution.py        # Image Super-Resolution
+└── Demo_point_cloud.py             # Point Cloud Recovery
+```
+
+## Citation
+
+If you find this work useful, please consider citing:
+
+```bibtex
+@article{xu2026reparameterized,
+  title={Reparameterized Tensor Ring Functional Decomposition for Multi-Dimensional Data Recovery},
+  author={Xu, Yangyang and Ke, Junbo and Wen, You-Wei and Wang, Chao},
+  journal={arXiv preprint arXiv:2603.01034},
+  year={2026}
+}
+```
