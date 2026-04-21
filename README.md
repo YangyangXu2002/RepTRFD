@@ -20,7 +20,7 @@ After downloading, please place the files into the `data/` directory.
 
 ## Directory Structure
 
-After organizing the datasets, your project structure should look like:
+The project should be organized as follows:
 
 ```text
 RepTRFD/
