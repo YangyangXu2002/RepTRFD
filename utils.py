@@ -195,7 +195,7 @@ def visualize_pointcloud(x_coord, y_R, y_G, y_B, filename="pointcloud.png",
     if torch.is_tensor(y_B):
         y_B = y_B.cpu().numpy()
 
-    color = np.stack([y_R, y_G, y_B], axis=1) / 255.0
+    color = np.stack([y_R, y_G, y_B], axis=1)
     color = np.clip(color, 0, 1)
 
     fig = plt.figure(figsize=figsize)
