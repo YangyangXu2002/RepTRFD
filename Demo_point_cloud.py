@@ -17,14 +17,15 @@ def load_and_preprocess_ply(file_path, obs_ratio, device):
         obs_coords, obs_values: Sampled subset based on obs_ratio.
         xyz_coords: Normalized spatial coords [N, 3].
     """
+    print(f"Reading point cloud from {file_path}...")
     plydata = PlyData.read(file_path)
     data = plydata.elements[0].data
 
     xyz = np.vstack([data['x'], data['y'], data['z']]).T
-    rgb = np.vstack([data['red'], data['green'], data['blue']]).T
-
     max_abs = np.max(np.abs(xyz))
     xyz_coords = xyz / max_abs
+    rgb = np.vstack([data['red'], data['green'], data['blue']]).T
+    rgb = rgb / 255.0
 
     N = xyz.shape[0]
     coords_list = []
@@ -55,7 +56,7 @@ def load_and_preprocess_ply(file_path, obs_ratio, device):
 def train(file_path, obs_ratio, ranks, expansion, omega_0, depths,
           lr, weight_decay, max_iter=3001, log_interval=500):
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    print(f"File: {file_path} | Device: {device} | Sampling Ratio: {obs_ratio}")
+    print(f"Device: {device}", flush=True)
 
     gt_coords, gt_values, obs_coords, obs_values, xyz_coords = load_and_preprocess_ply(
         file_path=file_path,
@@ -119,12 +120,12 @@ def train(file_path, obs_ratio, ranks, expansion, omega_0, depths,
 if __name__ == '__main__':
     expansion = 3; ranks = [20, 20, 20, 20]
     omega_0 = 240; depths = [1, 1, 1, 1]
-    lr, weight_decay = 3e-4, 2e2
+    lr, weight_decay = 2e-4, 5
     file_path = 'data/mario011.ply'; obs_ratio = 0.2
 
     train(
         file_path=file_path, obs_ratio=obs_ratio,
         ranks=ranks, expansion=expansion,
         omega_0=omega_0, depths=depths, lr=lr, weight_decay=weight_decay,
-        max_iter=3001, log_interval=500
+        max_iter=2001, log_interval=500
     )
